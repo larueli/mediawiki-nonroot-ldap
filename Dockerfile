@@ -8,6 +8,7 @@ RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && apt-get update 
     curl -O https://extdist.wmflabs.org/dist/extensions/PluggableAuth-REL1_34-17fb1ea.tar.gz && tar -xzf PluggableAuth-REL1_34-17fb1ea.tar.gz -C /var/www/html/extensions && \
     curl -O https://extdist.wmflabs.org/dist/extensions/LDAPProvider-master-8ead6a3.tar.gz && tar -xzf LDAPProvider-master-8ead6a3.tar.gz -C /var/www/html/extensions && \ 
     curl -O https://extdist.wmflabs.org/dist/extensions/LDAPAuthentication2-master-02f9330.tar.gz && tar -xzf LDAPAuthentication2-master-02f9330.tar.gz -C /var/www/html/extensions && \
+    curl -O https://extdist.wmflabs.org/dist/extensions/LDAPGroups-master-602d8c5.tar.gz && tar -xzf LDAPGroups-master-602d8c5.tar.gz -C /var/www/html/extensions && \
     chgrp 0 -R /var/www/html && chmod g+rwx -R /var/www/html && chgrp 0 -R /var/log && chmod g+rwx -R /var/log
 
 USER 1450:0
