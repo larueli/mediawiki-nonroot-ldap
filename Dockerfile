@@ -1,10 +1,10 @@
-FROM mediawiki:stable
+FROM larueli/php-base-image:7.4
 
-ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
+ARG MEDIAWIKI_URL=https://releases.wikimedia.org/mediawiki/1.35/mediawiki-1.35.1.tar.gz
 
-RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && apt-get update && apt-get install -y vim libcap2-bin rsync nano && \
-    install-php-extensions gd intl ldap oauth zip imagick && \
-    apt-get autoremove -y && a2enmod rewrite && setcap 'cap_net_bind_service=+ep' $(which apache2) && \
-    chgrp 0 -R /var/www/html && chmod g+rwx -R /var/www/html && chgrp 0 -R /var/log && chmod g+rwx -R /var/log
+USER 0
+
+RUN wget ${MEDIAWIKI_URL} -O mediawiki.tar.gz && tar zxvf mediawiki.tar.gz --strip-components=1 -C /var/www/html && \
+    rm mediawiki.tar.gz && chgrp 0 -R /var/www/html && chmod g+rwx -R /var/www/html
 
 USER 1450:0
